@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniTools - Hub de Utilitários Online</title>
+    <title>Tools4ever - Hub de Utilitários Online</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -36,6 +36,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200 custom-scroll">
 
+    <!-- Header Navigation -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
@@ -47,7 +48,7 @@
                     </svg>
                 </div>
                 <div>
-                    <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">Omni<span class="text-blue-600 dark:text-blue-400">Tools</span></span>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">Tools<span class="text-blue-600 dark:text-blue-400">4ever</span></span>
                     <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-[10px] font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 rounded-full">v2.0</span>
                 </div>
             </div>
@@ -64,6 +65,7 @@
                     <span id="currentLangLabel">PT</span>
                 </button>
 
+                <!-- Dark Mode Toggle -->
                 <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all">
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                     <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
@@ -72,7 +74,9 @@
         </div>
     </header>
 
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col md:flex-row gap-6">
+        <!-- Sidebar Categories -->
         <aside class="w-full md:w-64 flex-shrink-0">
             <div class="sticky top-22 bg-white dark:bg-slate-800/50 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
                 <p class="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Categorias</p>
@@ -81,6 +85,7 @@
             </div>
         </aside>
 
+        <!-- Tools Grid Area -->
         <main class="flex-1 min-w-0">
             <div id="gridHeader" class="flex items-center justify-between mb-6">
                 <div>
@@ -92,6 +97,7 @@
             <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             </div>
 
+            <!-- No Results State -->
             <div id="noResults" class="hidden text-center py-16 bg-white dark:bg-slate-800/30 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700">
                 <i data-lucide="search-x" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
                 <h3 id="noResultsTitle" class="text-base font-semibold text-slate-700 dark:text-slate-300">Nenhuma ferramenta encontrada</h3>
@@ -100,6 +106,7 @@
         </main>
     </div>
 
+    <!-- Interactive Tool Modal -->
     <div id="toolModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transform scale-95 transition-transform duration-200" id="modalBox">
             <div class="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-700/60 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
@@ -119,6 +126,7 @@
         </div>
     </div>
 
+    <!-- Notification Toast -->
     <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
         <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 dark:text-emerald-600"></i>
         <span id="toastMsg" class="text-sm font-semibold"></span>
@@ -127,7 +135,7 @@
     <!-- Footer with Creator Credits -->
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-            <p>© <span id="currentYear"></span> OmniTools. <span id="allRightsText">Todos os direitos reservados.</span></p>
+            <p>© <span id="currentYear"></span> Tools4ever. <span id="allRightsText">Todos os direitos reservados.</span></p>
             <div class="flex items-center gap-1.5 font-medium">
                 <span id="createdByText">Criado originalmente por</span>
                 <a href="https://github.com/SonicLuigi404" target="_blank" rel="noopener noreferrer" class="font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 transition-colors">
@@ -234,8 +242,6 @@
         let activeCategory = "Todas";
         let timerInterval = null;
         let timerSeconds = 0;
-        let stopwatchInterval = null;
-        let stopwatchTime = 0;
 
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
@@ -265,7 +271,6 @@
 
             document.getElementById('currentCategoryTitle').innerText = activeCategory === 'Todas' ? t.allToolsTitle : (t.categories[activeCategory] || activeCategory);
 
-            // Footer updates
             document.getElementById('allRightsText').innerText = t.allRights;
             document.getElementById('createdByText').innerText = t.createdBy;
             document.getElementById('currentYear').innerText = new Date().getFullYear();
@@ -395,7 +400,6 @@
             modal.classList.add('opacity-0', 'pointer-events-none');
 
             if (timerInterval) clearInterval(timerInterval);
-            if (stopwatchInterval) clearInterval(stopwatchInterval);
         }
 
         function showToast(msg) {
